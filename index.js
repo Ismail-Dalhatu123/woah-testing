@@ -32,19 +32,22 @@ $("#join-form").submit(async function (e) {
   e.preventDefault();
   $("#join").attr("disabled", true);
   try {
-    options.appid = $("#appid").val();
-    options.token = $("#token").val();
-    options.channel = $("#channel").val();
-    const a = await $.get(
-      `https://send-me-push.herokuapp.com/send?title=${$(
-        "#name"
-      ).val()}&body=Just Joined Your Call`
-    );
-    console.log(a);
-
+    options.appid = "a0d68fc532e046c7a1bb7ed47a0af46b";
+    options.token =
+      "006a0d68fc532e046c7a1bb7ed47a0af46bIACLsLMASbWg6V9FKL20E4hM7Z61Qft0oA8MtKS1kjrVm/5NKkkAAAAAEAD1z9KPcyT7YQEAAQBzJPth";
+    options.channel = "ch1";
+    // options.appid = $("#appid").val();
+    // options.token = $("#token").val();
+    // options.channel = $("#channel").val();
     await join();
     if (options.token) {
       $("#success-alert-with-token").css("display", "block");
+      const a = await $.get(
+        `https://send-me-push.herokuapp.com/send?title=${$(
+          "#name"
+        ).val()}&body=Just Joined Your Call`
+      );
+      console.log(a);
     } else {
       $("#success-alert a").attr(
         "href",
