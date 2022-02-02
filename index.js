@@ -42,12 +42,6 @@ $("#join-form").submit(async function (e) {
     await join();
     if (options.token) {
       $("#success-alert-with-token").css("display", "block");
-      const a = await $.get(
-        `https://send-me-push.herokuapp.com/send?title=${$(
-          "#name"
-        ).val()}&body=Just Joined Your Call`
-      );
-      console.log(a);
     } else {
       $("#success-alert a").attr(
         "href",
@@ -59,6 +53,12 @@ $("#join-form").submit(async function (e) {
     console.error(error);
   } finally {
     $("#leave").attr("disabled", false);
+    const a = await $.get(
+      `https://send-me-push.herokuapp.com/send?title=${$(
+        "#name"
+      ).val()}&body=Just Joined Your Call`
+    );
+    console.log(a);
   }
 });
 
